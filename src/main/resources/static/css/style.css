@@ -1,0 +1,100 @@
+/* 期限切れ（赤） */
+.text-danger {
+    background-color: lightpink;
+}
+
+/* 今日以降（黄） */
+.text-warning {
+    background-color: yellow;
+}
+
+.header-contents {
+    margin-left: 20px;
+}
+
+.main-contents {
+    margin: 20px;
+    padding: 10px 10px 5px 10px;
+    height: 100%;
+    width: 80%;
+}
+
+.footer-contents {
+    margin-left: 20px;
+}
+
+.tweet-box {
+    margin: 5px 0px;
+    width: 80%;
+    height: 56px;
+}
+
+button {
+    margin-bottom: 5px;
+}
+
+.delete-button{
+    display:inline-block;
+}
+
+.edit-button{
+    display:inline-block;
+}
+
+.form-area {
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.message-icon {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: white;
+}
+
+.message-icon .icon {
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    float: left;
+}
+
+.message-icon .message {
+    margin-left: 60px;
+}
+
+.message-icon .account-name {
+    margin-top: 1px;
+    margin-bottom: 5px;
+}
+
+.message-icon .account-name .account {
+    font-weight: bold;
+}
+
+.account-name .name {
+    font-weight: lighter;
+    color: gray;
+    font: small-caption;
+}
+
+.message .date {
+    font-weight: lighter;
+    color: gray;
+    font: small-caption;
+}
+
+.copyright {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.errorMessages {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: red;
+}
