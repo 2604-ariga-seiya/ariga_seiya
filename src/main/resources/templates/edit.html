@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="styleSheet">
+    <title>タスク編集</title>
+</head>
+<body>
+<div class="header-contents">
+    <h2>タスク編集</h2>
+</div>
+<div class="main-contents">
+    <form th:action="@{/update/{id}(id=*{id})}" th:object="${formModel}" th:method="put">
+
+        <div th:if="${errorMessage}" style="color: red; font-weight: bold; margin-bottom: 10px;">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <div th:if="${#fields.hasErrors('content')}"
+             th:errors="*{content}" style="color: red; font-weight: bold; margin-top: 5px;">
+        </div>
+
+        <div th:if="${#fields.hasErrors('limitDate')}"
+             th:errors="*{limitDate}" style="color: red; font-weight: bold; margin-top: 5px;">
+        </div>
+
+        <div class="form-area">
+            <label>タスク内容</label><br/>
+            <textarea class="task-box" th:field="*{content}" size="20" maxlength="200"></textarea><br/>
+            <label>タスク期限</label><br>
+            <input type="date" class="task-limitDate-box" th:field="*{limitDate}"><br>
+
+            <input type="submit" value="編集"/>
+        </div>
+    </form>
+</div>
+<div class="footer-contents">
+    <a href="/">戻る</a>
+</div>
+</body>
+</html>
