@@ -9,5 +9,8 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task,Integer> {
-    List<Task> findByCreatedDateBetweenOrderByLimitDateAsc(LocalDateTime start, LocalDateTime end);
+    List<Task> findAllByOrderByLimitDateAsc();
+
+    List<Task> findAllByStatusAndContentContainingAndLimitDateBetweenOrderByLimitDateAsc(
+            Integer status, String content, LocalDateTime startDate, LocalDateTime endDate);
 }

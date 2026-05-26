@@ -1,5 +1,6 @@
 package com.example.ariga_seiya.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.Data;
 import jakarta.persistence.Column;
@@ -38,7 +39,7 @@ public class Task {
             return false;
         }
 
-        java.time.LocalDate taskDate = this.limitDate.toLocalDate();
+        java.time.LocalDate taskDate = limitDate.toLocalDate();
         java.time.LocalDate today = java.time.LocalDate.now();
 
         return taskDate.isBefore(today);

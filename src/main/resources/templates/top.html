@@ -15,7 +15,7 @@
 
     <p>本日の日付：<span th:text="${#temporals.format(todayDate, 'yyyy/MM/dd')}"></span></p>
 
-    <form th:action="@{/tasks/new}" method="get" style="display: inline-block;">
+    <form th:action="@{/new}" method="get" style="display: inline-block;">
         <button type="submit" class="btn btn-primary">新規タスク</button>
     </form>
 
@@ -32,15 +32,15 @@
 
             <select name="status" id="status-select">
                 <option value="1">未着手</option>
-                <option value="2">進行中</option>
+                <option value="2">実行中</option>
                 <option value="3">ステイ中</option>
                 <option value="4">完了</option>
             </select>
 
             <label for="task-content">タスク内容：</label>
-            <input type="text" id="task-content" name="content">
+            <input type="text" id="task-content" name="content" maxlength="140">
 
-            <input type="submit" value="絞り込み"/>
+            <input type="submit" value="絞込"/>
         </div>
     </form>
 </div>
@@ -60,7 +60,8 @@
             <td th:text="${task.content}"></td>
 
             <td>
-                <form th:action="@{/tasks/update-status/{id}(id=${task.id})}" method="post">
+                <form th:action="@{/tasks/update-status/{id}(id=${task.id})}" method="post"
+                      onsubmit="return confirm('ステータスを変更しますか？');">
                     <select name="status">
                         <option value="1" th:selected="${task.status == 1}">未着手</option>
                         <option value="2" th:selected="${task.status == 2}">実行中</option>
@@ -71,15 +72,16 @@
                 </form>
             </td>
             <td th:text="${task.limitDate != null ? #temporals.format(task.limitDate, 'yyyy/MM/dd') : ''}"
-                th:classappend="${task.limitDate != null and task.limitDate.toLocalDate().isBefore(todayDate)} ? 'text-danger' : 'text-warning'">
+                th:classappend="${task.limitDate != null and #temporals.format(task.limitDate, 'yyyy-MM-dd') lt #temporals.format(todayDate, 'yyyy-MM-dd')} ? 'text-danger' : 'text-warning'">
             </td>
             <td>
-                <form th:action="@{/tasks/edit/{id}(id=${task.id})}" method="GET">
+                <form th:action="@{/edit/{id}(id=${task.id})}" method="GET">
                     <button type="submit" class="btn-edit">編集</button>
                 </form>
             </td>
             <td>
-                <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post">
+                <form th:action="@{/delete/{id}(id=${task.id})}" th:method="delete"
+                      onsubmit="return confirm('このタスクを削除してもよろしいですか？');">
                     <button type="submit" class="btn-delete">削除</button>
                 </form>
             </td>
